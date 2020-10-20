@@ -15,59 +15,54 @@
 
 ## 二、实验过程
 1. 首先创建四个类和一个主类
-2.将四个主类名字分别命名为People，然后用另外两个类Student，Teacher分别设置为People的子类，并用super（）将父类People中的编号、姓名、性别继承。在输出语句中用toString（）方法。
-3. 在PC中进行了类体CPU的定义。引入了speed用来存储cpu运行速度这个变量。而后创建构造方法用来接受Test中输入的数值。CPU （int speed）在其中调用另一个函数setSpeed（speed）用来确定变量speed的值。 最后加入int getSpeed()方便调出speed数值方便输出。
-4.设置if语句，当速率低的时候输出默认值为3000.
-5.将四个变量分装，改变private方法变成public方法。使程序运行。
+2. 将四个主类名字分别命名为People，然后用另外两个类Student，Teacher分别设置为People的子类，并用super（）将父类People中的编号、姓名、性别继承。在输出语句中用toString（）方法。
+3. 随后在Test主类里面设置了教师信息、学生信息、课程信息。
+4. 利用循环和import java.util.Scanner设置一个后台输入系统。通过识别输入的数字来确定学生所对应的授课课程和该课程的老师。
+5. 在设计一些细节上的调整。比如没有该编号会输出未找到该课程；当学生选好课会将学生信息，授课老师信息，课程信息一起打印出来；退课必须确认之前选课编号才可以退课……
 
 
 
 ## 三、核心方法
-> 基本要求：首先定义了四个Java类文件。将他们命名为“CPU”“HardDisk”“Test”“PC”。在PC中进行了类体CPU的定义。引入了speed用来存储cpu运行速度这个变量。而后创建构造方法用来接受Test中输入的数值。CPU （int speed）在其中调用另一个函数setSpeed（speed）用来确定变量speed的值。 最后加入int getSpeed()方便调出speed数值方便输出。
->> 附加条件：引入新变量count（int）、hertz(double)两个变量并对他们同时进行以上操作。并在setspeed（）中进行if判断语句。如果运行速度没有到达2500的话，就按3000输出。
+> 将四个主类名字分别命名为People，然后用另外两个类Student，Teacher分别设置为People的子类，并用super（）将父类People中的编号、姓名、性别继承。在输出语句中用toString（）方法。
+>>这是选课的一个小循环语句，将wuli，shuxue，yingyu的1，2，3选项来选择这三个。
 
 ```
-package src2;
-
-public class CPU {
-    public int speed;
-    public int count;
-    public double hertz;
-    CPU(){}
-     public CPU(int speed,int count,double hertz){
-        setSpeed(speed);
-        setCount(count);
-        setHertz(hertz);
-
-    }
-    public int getCount(){
-        return count;
-    }
-    int getSpeed(){
-        return speed;
-    }
-    double getHertz(){
-        return hertz;
-    }
-    public void setCount(int count) {
-        this.count = count;
-    }
-    public void setSpeed(int speed) {
-        if(speed<=2500){
-            speed=3000;
-            this.speed = speed;}
-    }
-    public void setHertz(double hertz) {
-        this.hertz = hertz;
-    }
-}
+int y = in.nextInt();        // Scanner 类来获取用户的输入
+        System.out.println("请输入1,2,3进行选课: ");
+        if (y == 1) {
+            a = wuli;
+            System.out.println("已选课: " + wuli);
+            System.out.println(zhang);
+        } else if (y == 2) {
+            a = shuxue;
+            System.out.println("已选课: " + shuxue);
+            System.out.println(li);
+        } else if (y == 3) {
+            a = yingyu;
+            System.out.println("已选课: " + yingyu);
+            System.out.println(wang);
+        } else {
+            System.out.println("不含该课程");
+        }
 
 ```
- 
-## 四、实验结果
-![%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.png](https://github.com/liuyunsong010806/java-/blob/main/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.png)
+>>这一部分我用了toString（）的方法
 
-## 五、实验感想
+```
+ int course;
+    Teacher (int number,String name,String sex,int course){
+        super(number,name,sex);
+        this.course=course;
+    }
+        public String toString (){
+            return "教师号:"+number+"\t老师姓名："+name+"\t性别"+sex+"\t 所教课程："+course;
+        }
+```
+## 四、流程图
+![%E5%9B%BE%E7%89%871.png](https://github.com/liuyunsong010806/java-/blob/main/%E5%9B%BE%E7%89%871.png)
 
-作为第二次做的java实验，我已经学会类、方法的构建。不同函数的构建和引用没，体会到了修饰符private的用法。并学会了将一个程序分成多个包进行分装，将运行方法的访问限制修饰符改变，让不同包能跨包运行。
-并会用if判断语句来进行对输出数据的改变。
+## 五、实验结果
+![%E5%9B%BE%E7%89%872.png](https://github.com/liuyunsong010806/java-/blob/main/%E5%9B%BE%E7%89%872.png)
+
+## 六、实验感想
+作为第三次做的java实验，我已经学会类、方法的构建。不同函数的构建和引用没，体会到了修饰符super（）的用法。我还学会了如何从简化文本扫描、获取控制台输入。通过循环语句来进行选择和取消该课程。另外我在中途还出现了个错误，用System.out.print（）在子类里面，可是输出却是乱码，后来改用toString（）完美的解决了这个问题。
